@@ -1,6 +1,6 @@
 # SecretHanukka
 
-Il suffit de configurer 3 fichiers situés dans le fichier config/ :
+Il suffit de configurer 3 fichiers situés dans le repertoire config/ :
 
 1) config.properties
 
