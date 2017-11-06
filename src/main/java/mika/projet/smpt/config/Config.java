@@ -8,20 +8,19 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Created by Michael Spierer & Edward Ransome
+ * Created by Michael Spierer
  */
 public class Config implements IConfig {
 
     private String smtpServerAddress;
     private int smtpServerPort;
-    private final List<Personne> victims;
+    private Personne organisateur;
+    private final List<Personne> participants;
     private final List<String> messages;
-    private int numberOfGroups;
-    private List<Personne> cc;
 
     //constructor
     public Config() throws IOException {
-        victims = loadAddressesFromFile("./config/participants.utf8");
+        participants = loadAddressesFromFile("./config/participants.utf8");
         messages = loadMessagesFromFile("./config/messages.utf8");
         loadProprietes("./config/config.properties");
     }
@@ -37,8 +36,6 @@ public class Config implements IConfig {
             personnes.add(new Personne(addresse));
             addresse = reader.readLine();
         }
-
-
         return personnes;
     }
 
@@ -61,12 +58,8 @@ public class Config implements IConfig {
         return result;
     }
 
-    public List<Personne> getVictims() {
-        return victims;
-    }
-
-    public int getNumberOfGroups() {
-        return numberOfGroups;
+    public List<Personne> getParticipants() {
+        return participants;
     }
 
     public int getSmtpServerPort() {
@@ -81,8 +74,8 @@ public class Config implements IConfig {
         return messages;
     }
 
-    public List<Personne> getCc() {
-        return cc;
+    public Personne getOrganisateur() {
+        return organisateur;
     }
 
     private void loadProprietes(String fileName) throws IOException {
@@ -91,12 +84,6 @@ public class Config implements IConfig {
         properties.load(fis);
         this.smtpServerAddress = properties.getProperty("smtpServerAdress");
         this.smtpServerPort = Integer.parseInt(properties.getProperty("smtpServerPort"));
-        this.numberOfGroups = Integer.parseInt(properties.getProperty("numberOfGroups"));
-
-        this.cc = new ArrayList<Personne>();
-        String witnesses = properties.getProperty("witnessesToCC");
-        this.cc.add(new Personne(witnesses));
-
-
+        this.organisateur = new Personne(properties.getProperty("organisator"));
     }
 }

@@ -4,8 +4,8 @@ package mika.projet.smpt;
 import mika.projet.smpt.client.SmtpClientImpl;
 import mika.projet.smpt.config.Config;
 import mika.projet.smpt.config.IConfig;
-import mika.projet.smpt.model.prank.SecretSanta;
-import mika.projet.smpt.model.prank.SecretSantaGenerator;
+import mika.projet.smpt.model.secret.SecretSuvgania;
+import mika.projet.smpt.model.secret.SecretSuvganiaGenerator;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,16 +13,16 @@ import java.util.List;
 /**
  * Created by Michael Spierer
  */
-public class SmtpPrankApplication {
+public class SmtpSecretApplication {
 
     public static void main(String[] args) throws IOException {
         IConfig config = new Config();
-        SecretSantaGenerator secretSantaGenerator = new SecretSantaGenerator(config);
+        SecretSuvganiaGenerator secretSuvganiaGenerator = new SecretSuvganiaGenerator(config);
 
         SmtpClientImpl sci = new SmtpClientImpl(config.getSmtpServerAddress(),config.getSmtpServerPort());
 
-        List<SecretSanta> secretSantas = secretSantaGenerator.generatePranks();
-        for(SecretSanta p : secretSantas){
+        List<SecretSuvgania> secretSuvganias = secretSuvganiaGenerator.generatePranks();
+        for(SecretSuvgania p : secretSuvganias){
             sci.sendMessage(p);
         }
 

@@ -1,8 +1,7 @@
 package mika.projet.smpt.client;
 
 
-import mika.projet.smpt.model.mail.Personne;
-import mika.projet.smpt.model.prank.SecretSanta;
+import mika.projet.smpt.model.secret.SecretSuvgania;
 import mika.projet.smpt.protocol.SmtpProtocol;
 
 import java.io.*;
@@ -34,7 +33,7 @@ public class SmtpClientImpl implements ISmtpClient {
     }
 
 
-    public void sendMessage(SecretSanta p) throws IOException {
+    public void sendMessage(SecretSuvgania p) throws IOException {
         String response;
         socket = new Socket(smtpServerAdress, smtpServerPort);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
@@ -42,9 +41,7 @@ public class SmtpClientImpl implements ISmtpClient {
 
         LOG.info(in.readLine());
 
-
         sendToServer(SmtpProtocol.CMD_EHLO + "secretsanta.com\r\n");
-
 
         while (!(response = in.readLine()).startsWith("250 ")) {
             LOG.info(response);
@@ -59,12 +56,6 @@ public class SmtpClientImpl implements ISmtpClient {
         sendToServer(SmtpProtocol.CMD_RCPT_TO + p.getReceveurs().getEmail() + "\r\n");
         LOG.info(in.readLine());
 
-
-        for (Personne reciever : p.getCc()) {
-            sendToServer(SmtpProtocol.CMD_RCPT_TO + reciever.getEmail() + "\r\n");
-            LOG.info(in.readLine());
-        }
-
         sendToServer(SmtpProtocol.CMD_DATA);
         LOG.info(in.readLine());
 
@@ -73,14 +64,6 @@ public class SmtpClientImpl implements ISmtpClient {
 
         if (p.getReceveurs() != null) {
             out.write("To: " + p.getReceveurs().getEmail());
-            out.write("\r\n");
-        }
-
-        if (p.getCc().size() != 0) {
-            out.write("Bcc: " + p.getCc().get(0).getEmail());
-            for (int i = 1; i < p.getCc().size(); ++i) {
-                out.write(", " + p.getCc().get(i).getEmail());
-            }
             out.write("\r\n");
         }
 

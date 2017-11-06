@@ -1,6 +1,6 @@
 package mika.projet.smpt.client;
 
-import mika.projet.smpt.model.prank.SecretSanta;
+import mika.projet.smpt.model.secret.SecretSuvgania;
 
 import java.io.IOException;
 
@@ -9,6 +9,6 @@ import java.io.IOException;
  */
 public interface ISmtpClient {
 
-    void sendMessage(SecretSanta p) throws IOException;
+    void sendMessage(SecretSuvgania p) throws IOException;
 
 }

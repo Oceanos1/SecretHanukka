@@ -12,11 +12,11 @@ public interface IConfig {
 
     List<Personne> loadAddressesFromFile(String filename) throws IOException;
 
-    List<Personne> getVictims();
-
-    List<Personne> getCc();
+    List<Personne> getParticipants();
 
     List<String> getMessages();
+
+    Personne getOrganisateur();
 
     public String getSmtpServerAddress();
 

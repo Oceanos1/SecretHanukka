@@ -23,9 +23,8 @@ public class Personne {
 
     public Personne(String line) {
         String[] getNames = line.split(",");
-
         this.email = getNames[0];
-        //recupere le nom et le prenom du mailet mets la premiere lettre en majuscule
+        //recupere le nom et le prenom du mail et mets la premiere lettre en majuscule
         this.name = getNames[1].substring(0, 1).toUpperCase() + getNames[1].substring(1);
         this.lastName = getNames[2].substring(0, 1).toUpperCase() + getNames[2].substring(1);
     }
@@ -53,7 +52,4 @@ public class Personne {
         }
         return true;
     }
-
-
-
 }
