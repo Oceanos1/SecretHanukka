@@ -27,7 +27,7 @@ public class SecretSuvganiaGenerator {
 
         for (Group g : groups) {
 
-            String message = "Tu es le Hanukka Elf de "+ g.getReciever().getName()+" "+g.getReciever().getLastName();
+            String message = "Tu es l'Elfe de Hanukka de "+ g.getReciever().getName()+" "+g.getReciever().getLastName();
             SecretSuvgania p = new SecretSuvgania(config.getOrganisateur(), g.getSecretElf(), messages.get(0)+message);
 
             secretSuvganias.add(p);
