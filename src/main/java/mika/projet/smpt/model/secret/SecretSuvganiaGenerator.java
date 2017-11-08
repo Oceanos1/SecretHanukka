@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class SecretSuvganiaGenerator {
     private IConfig config;
+    private final int NB_MIN_PARTICIPANTS = 1;
 
     public SecretSuvganiaGenerator(IConfig config) {
         this.config = config;
@@ -22,7 +23,7 @@ public class SecretSuvganiaGenerator {
         List<String> messages = new ArrayList<String>(config.getMessages());
         List<SecretSuvgania> secretSuvganias = new ArrayList<SecretSuvgania>();
 
-        if(config.getParticipants().size() <= 1){
+        if(config.getParticipants().size() <= NB_MIN_PARTICIPANTS){
             throw new IllegalStateException("Il n'y a pas assez de participants");
         }
         // Genere des groupes de 2 valides
