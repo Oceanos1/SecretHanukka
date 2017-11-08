@@ -22,6 +22,9 @@ public class SecretSuvganiaGenerator {
         List<String> messages = new ArrayList<String>(config.getMessages());
         List<SecretSuvgania> secretSuvganias = new ArrayList<SecretSuvgania>();
 
+        if(config.getParticipants().size() <= 1){
+            throw new IllegalStateException("Il n'y a pas assez de participants");
+        }
         // Genere des groupes de 2 valides
         List<Group> groups = generateGroups(config.getParticipants());
 

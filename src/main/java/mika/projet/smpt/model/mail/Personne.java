@@ -29,12 +29,6 @@ public class Personne {
         this.lastName = getNames[2].substring(0, 1).toUpperCase() + getNames[2].substring(1);
     }
 
-    public Personne(String name, String lastName, String email) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
